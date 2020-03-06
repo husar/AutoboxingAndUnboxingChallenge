@@ -38,7 +38,7 @@ public class Bank {
             System.out.println("We don't have this branch");
         }else {
             branches.get(positionOfBranch).addNewCustomer(nameOfCustomer, firstTransaction);
-            System.out.println("New customer: " + nameOfCustomer + " was added with first transaction " + firstTransaction + "€");
+            System.out.println("New customer: " + nameOfCustomer + " was added with first transaction " + String.format("%.2f", firstTransaction) + "€");
         }
     }
 
@@ -68,6 +68,16 @@ public class Bank {
                     }
                     System.out.println();
                 }
+            }
+        }
+    }
+
+    public void printBranches(){
+        if (branches.size() == 0){
+            System.out.println("There are no branches");
+        }else {
+            for (int i = 0; i<branches.size(); i++){
+                System.out.println((i+1)+". "+branches.get(i).getAddress());
             }
         }
     }

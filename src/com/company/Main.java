@@ -7,7 +7,6 @@ public class Main {
         VUB.addBranch("Stara Lubovna");
         VUB.addBranch("Poprad");
         VUB.addBranch("Sabinov");
-        //TODO add printing of branch for bank
         VUB.addBranch("Sabinov");
         VUB.addNewCustomerWithFirstTransaction("Poprad","Jano",254.52);
         VUB.addNewCustomerWithFirstTransaction("Poprad","Jozef",254);
