@@ -19,7 +19,11 @@ public class Main {
         VUB.addNextTransactionToCustomer("Poprad","Jozef", 300);
         VUB.addNextTransactionToCustomer("Poprad","Jozef", -1500);
         VUB.showCustomerForBranch("Poprad","Jano");
-        //TODO valid format for printing transactions
-        //TODO automate all of this things
+        //TODO options
+        //TODO automate adding of new customer with initial transaction to existing branch
+        //TODO adding new transactions for customer
+        //TODO show list of branches
+        //TODO show list of customers -> optionaly with transactions
+        //TODO showing list of transactions for 1 defined customer
     }
 }
