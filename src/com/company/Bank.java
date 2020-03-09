@@ -14,10 +14,13 @@ public class Bank {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void addBranch(String address){
         if (findBranch(address) == -1){
             branches.add(new Branch(address));
-            System.out.println("New branch was added");
         }else {
             System.out.println("Branch with this name already exists.");
         }
