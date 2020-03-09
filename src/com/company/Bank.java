@@ -64,7 +64,14 @@ public class Bank {
                 for (int i = 0; i < branches.get(positionOfBranch).getCustomers().size(); i++) {
                     System.out.print((i + 1) + ". " + branches.get(positionOfBranch).getCustomers().get(i).getName());
                     if (alsoTransactions.equals("yes")){
-                        System.out.print(": " + Arrays.toString(branches.get(positionOfBranch).getCustomers().get(i).getTransactions().toArray()));
+                        System.out.print(": [");
+                        for (int j = 0; j<branches.get(positionOfBranch).getCustomers().get(i).getTransactions().size();j++){
+                            System.out.print(String.format("%.2f",branches.get(positionOfBranch).getCustomers().get(i).getTransactions().get(j))+"€");
+                            if (j != (branches.get(positionOfBranch).getCustomers().get(i).getTransactions().size()-1)){
+                                System.out.print("; ");
+                            }
+                        }
+                        System.out.print("]");
                     }
                     System.out.println();
                 }
