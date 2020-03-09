@@ -54,7 +54,7 @@ public class Bank {
         }
     }
 
-    public void showCustomerForBranch(String branch, String nameOfCustomer){
+    public void showCustomerForBranch(String branch){
         int positionOfBranch = findBranch(branch);
         if (positionOfBranch == -1){
             System.out.println("We don't have this branch");
@@ -87,7 +87,7 @@ public class Bank {
             System.out.println("There are no branches");
         }else {
             for (int i = 0; i<branches.size(); i++){
-                System.out.println((i+1)+". "+branches.get(i).getAddress());
+                System.out.println(branches.get(i).getAddress());
             }
         }
     }
