@@ -28,7 +28,7 @@ public class Bank {
 
     private int findBranch(String address){
         for (int i = 0; i < branches.size(); i++){
-            if (address.equals(branches.get(i).getAddress())){
+            if (address.toLowerCase().equals(branches.get(i).getAddress().toLowerCase())){
                 return i;
             }
         }
@@ -41,7 +41,6 @@ public class Bank {
             System.out.println("We don't have this branch");
         }else {
             branches.get(positionOfBranch).addNewCustomer(nameOfCustomer, firstTransaction);
-            System.out.println("New customer: " + nameOfCustomer + " was added with first transaction " + String.format("%.2f", firstTransaction) + "€");
         }
     }
 

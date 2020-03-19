@@ -28,12 +28,20 @@ public class Main {
         while (!exit){
             if (scanner.hasNextInt()){
                 int option = scanner.nextInt();
+                scanner.nextLine();
                 switch (option){
                     case 0:
                         printOptions();
                         break;
                     case 1:
+                        positionOfBank = chooseBank();
+                        printOptions();
+                        break;
+                    case 2:
                         addNewCustomer(positionOfBank);
+                        break;
+                    case 3:
+                        addNextTransaction(positionOfBank);
                         break;
                     case 5:
                         banks.get(positionOfBank).showCustomerForBranch("Poprad");
@@ -45,44 +53,53 @@ public class Main {
             }else {
                 System.out.println("Please choose number from options.");
                 printOptions();
+                scanner.nextLine();
             }
-            scanner.nextLine();
         }
-        //TODO Bug: after adding of new customer to branch is waiting for next 2 numbers then program continue
-        //TODO automate adding of new customer with initial transaction to existing branch
-        //TODO adding new transactions for customer
         //TODO show list of branches
         //TODO show list of customers -> optionaly with transactions
         //TODO showing list of transactions for 1 defined customer
     }
 
+    public static void addNextTransaction(int positionOfBank){
+        String addressOfBranch = chooseBranch(positionOfBank);
+        System.out.println("Please enter the name of customer: ");
+        String nameOfCustomer = scanner.nextLine();
+        double transaction = enterValidTransaction();
+        banks.get(positionOfBank).addNextTransactionToCustomer(addressOfBranch,nameOfCustomer,transaction);
+    }
+
     public static void addNewCustomer(int positionOfBank){
         System.out.println("Enter the name of customer:");
-        scanner.nextLine();
         String name = scanner.nextLine();
-        System.out.println("Enter your first transaction:");
-        double firstTransaction = 0;
+        double firstTransaction = -1;
+        while (firstTransaction < 0) {
+            firstTransaction = enterValidTransaction();
+        }
+        String addressOfBank = chooseBranch(positionOfBank);
+        banks.get(positionOfBank).addNewCustomerWithFirstTransaction(addressOfBank,name,firstTransaction);
+    }
+
+
+    private static double enterValidTransaction(){
+        System.out.println("Enter your transaction:");
+        double transaction = 0;
         boolean isDouble = false;
         while (!isDouble) {
             if (scanner.hasNextDouble()) {
-                firstTransaction = scanner.nextDouble();
+                transaction = scanner.nextDouble();
                 scanner.nextLine();
-                if (firstTransaction > 0) {
-                    String addressOfBank = chooseBranch(positionOfBank);
-                    banks.get(positionOfBank).addNewCustomerWithFirstTransaction(addressOfBank,name,firstTransaction);
-                    isDouble = true;
-                }else {
-                    System.out.println("You cannot enter a negative number");
-                }
+                isDouble = true;
             }
             else {
                 System.out.println("Please put a valid number for your first transaction");
+                scanner.nextLine();
             }
-            scanner.nextLine();
         }
+        return transaction;
     }
 
-    public static String chooseBranch(int positionOfBank){
+    private static String chooseBranch(int positionOfBank){
         System.out.println("Please choose your branch:");
         banks.get(positionOfBank).printBranches();
         String addressOfBranch = scanner.nextLine();
@@ -98,6 +115,7 @@ public class Main {
             if (scanner.hasNextInt()){
                 int positionOfBank = scanner.nextInt() - 1;
                 if (positionOfBank>-1 && positionOfBank<banks.size()){
+                    scanner.nextLine();
                     return positionOfBank;
                 }
                 else {
@@ -113,7 +131,7 @@ public class Main {
 
     public static void printOptions(){
         System.out.println("Press: \n" +
-                "1 - to show the banks you can work with\n" +
+                "1 - to choose another bank\n" +
                 "2 - to add new customer to existing branch with initial transaction\n" +
                 "3 - to add new transaction to existing customer\n" +
                 "4 - to show list of branches for choosen bank\n" +

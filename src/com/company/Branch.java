@@ -22,7 +22,7 @@ public class Branch {
     public void addNewCustomer(String name, double firstTransaction){
         if (findCustomer(name) == -1) {
             customers.add(new Customer(name, firstTransaction));
-            System.out.println("Customer " + name + " was added.");
+            System.out.println("New customer: " + name + " was added with first transaction " + String.format("%.2f", firstTransaction) + "€");
         }
         else {
             System.out.println("Customer with this name already exist!");
