@@ -43,8 +43,15 @@ public class Main {
                     case 3:
                         addNextTransaction(positionOfBank);
                         break;
+                    case 4:
+                        banks.get(positionOfBank).printBranches();
+                        break;
                     case 5:
-                        banks.get(positionOfBank).showCustomerForBranch("Poprad");
+                        String nameOfBranch = chooseBranch(positionOfBank);
+                        banks.get(positionOfBank).showCustomerForBranch(nameOfBranch);
+                        break;
+                    case 6:
+                        showCustomersTransactions(positionOfBank);
                         break;
                     default:
                         exit =true;
@@ -56,9 +63,14 @@ public class Main {
                 scanner.nextLine();
             }
         }
-        //TODO show list of branches
-        //TODO show list of customers -> optionaly with transactions
-        //TODO showing list of transactions for 1 defined customer
+        //TODO optimize code for printing transactions in class Bank
+    }
+
+    public static void showCustomersTransactions(int positionOfBank){
+        String addressOfBranch = chooseBranch(positionOfBank);
+        System.out.println("Please enter the name of customer: ");
+        String nameOfCustomer = scanner.nextLine();
+        banks.get(positionOfBank).showCustomersTransaction(addressOfBranch,nameOfCustomer);
     }
 
     public static void addNextTransaction(int positionOfBank){

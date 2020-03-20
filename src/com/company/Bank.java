@@ -53,6 +53,22 @@ public class Bank {
         }
     }
 
+    public void showCustomersTransaction(String branch, String nameOfCustomer){
+        int positionOfBranch = findBranch(branch);
+        if (positionOfBranch == -1){
+            System.out.println("We don't have this branch");
+        }else {
+            if (branches.get(positionOfBranch).getCustomers().size() == 0){
+                System.out.println("There are not customers.");
+            }else {
+                boolean customerFound = printTransacions(positionOfBranch,nameOfCustomer);
+                if (!customerFound){
+                    System.out.println("Customer was not found");
+                }
+            }
+        }
+    }
+
     public void showCustomerForBranch(String branch){
         int positionOfBranch = findBranch(branch);
         if (positionOfBranch == -1){
@@ -79,6 +95,24 @@ public class Bank {
                 }
             }
         }
+    }
+
+    private boolean printTransacions(int positionOfBranch, String nameOfCustomer){
+        for (int i = 0; i < branches.get(positionOfBranch).getCustomers().size(); i++) {
+            if (nameOfCustomer.toLowerCase().equals(branches.get(positionOfBranch).getCustomers().get(i).getName().toLowerCase())){
+                System.out.print("[");
+                for (int j = 0; j<branches.get(positionOfBranch).getCustomers().get(i).getTransactions().size();j++){
+                    System.out.print(String.format("%.2f",branches.get(positionOfBranch).getCustomers().get(i).getTransactions().get(j))+"€");
+                    if (j != (branches.get(positionOfBranch).getCustomers().get(i).getTransactions().size()-1)){
+                        System.out.print("; ");
+                    }
+                }
+                System.out.print("]");
+                System.out.println();
+                return true;
+            }
+        }
+        return false;
     }
 
     public void printBranches(){
