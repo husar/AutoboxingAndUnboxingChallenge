@@ -63,7 +63,6 @@ public class Main {
                 scanner.nextLine();
             }
         }
-        //TODO optimize code for printing transactions in class Bank
     }
 
     public static void showCustomersTransactions(int positionOfBank){

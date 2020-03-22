@@ -80,18 +80,11 @@ public class Bank {
                 System.out.println("Do you want also transactions of customer? (yes/no)");
                 String alsoTransactions = scanner.nextLine();
                 for (int i = 0; i < branches.get(positionOfBranch).getCustomers().size(); i++) {
-                    System.out.print((i + 1) + ". " + branches.get(positionOfBranch).getCustomers().get(i).getName());
+                    String nameOfCustomer = branches.get(positionOfBranch).getCustomers().get(i).getName();
+                    System.out.print((i + 1) + ". " + nameOfCustomer);
                     if (alsoTransactions.equals("yes")){
-                        System.out.print(": [");
-                        for (int j = 0; j<branches.get(positionOfBranch).getCustomers().get(i).getTransactions().size();j++){
-                            System.out.print(String.format("%.2f",branches.get(positionOfBranch).getCustomers().get(i).getTransactions().get(j))+"€");
-                            if (j != (branches.get(positionOfBranch).getCustomers().get(i).getTransactions().size()-1)){
-                                System.out.print("; ");
-                            }
-                        }
-                        System.out.print("]");
+                        printTransacions(positionOfBranch,nameOfCustomer);
                     }
-                    System.out.println();
                 }
             }
         }
